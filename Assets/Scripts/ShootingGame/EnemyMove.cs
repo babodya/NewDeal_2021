@@ -80,5 +80,18 @@ public class EnemyMove : MonoBehaviour
         // 2초 후 파괴 이펙트 파괴
         Destroy(pungPung, 0.3f);
 
+        // 1. ScoreManager 객체를 가져오자 : 유니티 함수 사용 - Find
+
+        GameObject go = GameObject.Find("ScoreManager");
+
+        // 2. ScoreManager 객체의 ScoreManager 컴포넌트(게임오브젝트)를 가져온다.
+        ScoreManager sm = go.GetComponent<ScoreManager>();
+
+        // 3. ScoreManager 컴포넌트(게임오브젝트)안에 CurrentScore를 증가 시켜준다.
+        //sm.SetScore(sm.currentScore++);
+
+        sm.SetScore(sm.GetScore()+1);
+
+        PlayerPrefs.SetInt("Best Score", sm.bestScore);
     }
 }
